@@ -36,6 +36,9 @@ public class Pawn {
   public void setCoordinates(int row, int column) {
     checkCoordinates(row, column);
     // TODO проверка возможности хода
+    int diffRow = row - this.row;
+    int diffColumn = column - this.column;
+
   }
 
   // проверка корректности координат
@@ -59,4 +62,7 @@ public class Pawn {
       throw new IllegalArgumentException();
     }
   }
+
+
+
 }
