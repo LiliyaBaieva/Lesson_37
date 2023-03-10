@@ -1,10 +1,5 @@
 // класс "Пешка"
 public class Pawn {
-  public enum Color {
-    WHITE,
-    BLACK,
-  }
-
   private Color color;
   private int row;
   private int column;
@@ -38,6 +33,29 @@ public class Pawn {
     // TODO проверка возможности хода
     int diffRow = row - this.row;
     int diffColumn = column - this.column;
+    if(diffRow == 0 || diffColumn == 0){
+      throw new IllegalArgumentException("Нельзя шагать на месте.");
+    }
+
+    if(diffColumn != 0){
+      throw new IllegalArgumentException("Пешка не может ходить по диагонали.");
+    }
+
+    if(color == Color.WHITE && diffRow < 0 || color == Color.BLACK && diffRow >0){
+      throw new IllegalArgumentException("Пешка не может ходить назад.");
+    }
+
+    if(Math.abs(diffRow) > 2){
+      throw  new IllegalArgumentException("Пешка не может ходить так далеко.");
+    }
+
+    boolean firstWhiteStep = color == Color.WHITE && this.row == 2;
+    boolean firstBlackStep = color == Color.BLACK && this.row == 7;
+    boolean firstStep = firstWhiteStep || firstBlackStep;
+
+    if(!firstStep && Math.abs(diffRow) > 1 ){
+      throw new IllegalArgumentException("Пешка не может ходить так далеко");
+    }
 
   }
 
